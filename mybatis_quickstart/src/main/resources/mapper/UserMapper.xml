@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="userMapper">
+    <select id="findAll" resultType="usEr">
+        select * from user
+    </select>
+    <!--mybatis中的占位符#{}等同于jdbc中的?-->
+    <!--parameterType：指定接收到的参数类型-->
+    <insert id="saveUser" parameterType="com.lagou.domain.User">
+       insert into user(username,birthday,sex,address) values(#{username},#{birthday},#{sex},#{address})
+    </insert>
+
+    <update id="updateUser" parameterType="com.lagou.domain.User">
+        update user set username = #{username},birthday=#{birthday},sex=#{sex},address=#{address} where id = #{id}
+    </update>
+
+    <!--java.long.Integer 别名是int所以可以简写-->
+    <delete id="deleteUser" parameterType="int">
+        delete from user where id = #{abc}
+    </delete>
+
+</mapper>
